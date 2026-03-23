@@ -14,6 +14,99 @@
             </p>
         </div>
 
+        {{--
+            Accessibility Features panel.
+            <details>/<summary> is natively keyboard-operable (Enter/Space to toggle)
+            and announces its expanded state to screen readers without any JavaScript.
+        --}}
+        <details class="a11y-info-panel mb-4" id="a11yInfoPanel">
+            <summary class="a11y-info-summary" aria-label="Accessibility features available on this page — click to expand">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true" focusable="false" class="me-2 align-middle">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                Accessibility Features
+                <span class="a11y-info-chevron" aria-hidden="true">&#9660;</span>
+            </summary>
+
+            <div class="a11y-info-body" role="region" aria-label="Accessibility features description">
+                <p class="small mb-3">
+                    This login page is designed to be fully accessible. The following features
+                    are available to support users with visual and motor impairments:
+                </p>
+
+                <ol class="a11y-feature-list">
+                    <li>
+                        <strong>Screen Reader Support</strong><br>
+                        All fields, buttons, and error messages carry proper labels and
+                        ARIA attributes. A live announcement region reads out state
+                        changes (e.g. contrast toggled, text size changed) without
+                        interrupting your screen reader.
+                    </li>
+                    <li>
+                        <strong>High Colour Contrast Mode</strong><br>
+                        Use the <em>High Contrast</em> button above to switch to a
+                        black background with white and yellow text. This improves
+                        readability for users with low vision or colour blindness.
+                        Your preference is saved and restored automatically.
+                    </li>
+                    <li>
+                        <strong>Adjustable Text Size</strong><br>
+                        Use the <em>A+</em> and <em>A−</em> buttons above to increase
+                        or decrease the size of all text on the page (range: 12 – 28 px).
+                        Your chosen size is saved and restored on your next visit.
+                    </li>
+                    <li>
+                        <strong>Keyboard Navigation</strong><br>
+                        Every element is reachable by pressing <kbd>Tab</kbd> and
+                        activatable with <kbd>Enter</kbd> or <kbd>Space</kbd>.
+                        A visible focus ring highlights the currently selected element.
+                        A "Skip to login form" link appears when you first press
+                        <kbd>Tab</kbd>, letting you bypass the accessibility toolbar.
+                    </li>
+                    <li>
+                        <strong>Clear Labels and Instructions</strong><br>
+                        Each field has a persistent label and helper text. Required
+                        fields are marked with an asterisk (*). No information is
+                        communicated by placeholder text alone.
+                    </li>
+                    <li>
+                        <strong>Accessible Error Messages</strong><br>
+                        If your login attempt fails, an error summary appears at the
+                        top of the form and focus moves to it automatically. Each
+                        field also shows its own inline error message prefixed with
+                        a warning icon and the word "Error:" so it is never conveyed
+                        by colour alone.
+                    </li>
+                    <li>
+                        <strong>Show / Hide Password</strong><br>
+                        The eye icon button next to the password field toggles
+                        password visibility. Its state (shown/hidden) is announced
+                        to screen readers and focus returns to the password field
+                        after toggling so you can review what you typed.
+                    </li>
+                    <li>
+                        <strong>Large Touch Targets</strong><br>
+                        All buttons and input fields meet the WCAG 2.5.5 minimum
+                        touch target size of 44 × 44 px. The checkbox is enlarged
+                        and the "Forgot password" link has extra padding for easy
+                        tapping on mobile devices.
+                    </li>
+                    <li>
+                        <strong>Forgot Password Recovery</strong><br>
+                        A clearly labelled "Forgot your password?" link below the
+                        login button opens the password reset page. Screen readers
+                        will hear a full description of what the link does when it
+                        receives focus.
+                    </li>
+                </ol>
+            </div>
+        </details>
+
         {{-- Accessibility Controls --}}
         <div role="group" aria-label="Accessibility controls"
              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
@@ -240,6 +333,103 @@
         .login-card {
             background: #ffffff;
             border: 1px solid #dcdcdc;
+        }
+
+        /* ── Accessibility Features info panel ── */
+        .a11y-info-panel {
+            border: 1px solid #b6d4fe;
+            border-radius: 0.5rem;
+            background: #eff6ff;
+            overflow: hidden;
+        }
+
+        .a11y-info-summary {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.7rem 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1d4ed8;
+            cursor: pointer;
+            list-style: none;          /* removes default triangle in Firefox */
+            user-select: none;
+        }
+
+        /* Remove default marker in WebKit/Blink */
+        .a11y-info-summary::-webkit-details-marker { display: none; }
+
+        .a11y-info-summary:hover {
+            background: #dbeafe;
+        }
+
+        .a11y-info-chevron {
+            margin-left: auto;
+            font-size: 0.75rem;
+            transition: transform 0.2s ease;
+        }
+
+        details[open] .a11y-info-chevron {
+            transform: rotate(180deg);
+        }
+
+        .a11y-info-body {
+            padding: 0 1rem 1rem;
+            border-top: 1px solid #bfdbfe;
+        }
+
+        .a11y-feature-list {
+            padding-left: 1.25rem;
+            margin: 0;
+        }
+
+        .a11y-feature-list li {
+            font-size: 0.875rem;
+            line-height: 1.55;
+            margin-bottom: 0.6rem;
+            color: #1e3a5f;
+        }
+
+        .a11y-feature-list li:last-child { margin-bottom: 0; }
+
+        kbd {
+            display: inline-block;
+            padding: 0.1em 0.35em;
+            font-size: 0.8em;
+            font-family: monospace;
+            border: 1px solid #94a3b8;
+            border-radius: 0.25rem;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.4;
+        }
+
+        /* High-contrast overrides for the info panel */
+        body.high-contrast .a11y-info-panel {
+            background: #001a33 !important;
+            border-color: #fff !important;
+        }
+
+        body.high-contrast .a11y-info-summary {
+            color: #7dd3fc !important;
+        }
+
+        body.high-contrast .a11y-info-summary:hover {
+            background: #002244 !important;
+        }
+
+        body.high-contrast .a11y-info-body {
+            border-top-color: #555 !important;
+        }
+
+        body.high-contrast .a11y-feature-list li {
+            color: #e2e8f0 !important;
+        }
+
+        body.high-contrast kbd {
+            background: #1e293b !important;
+            color: #f8fafc !important;
+            border-color: #94a3b8 !important;
         }
 
         /* ── Large Inputs & Buttons ── */
