@@ -1,0 +1,5 @@
+/* Plain CSS — no Tailwind or build tools required */
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+}

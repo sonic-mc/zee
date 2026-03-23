@@ -1,0 +1,4 @@
+/* Application styles — no build tools required */
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+}
